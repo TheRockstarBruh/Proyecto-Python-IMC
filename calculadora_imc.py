@@ -1,4 +1,4 @@
-
+# Archivo principal: calculadora_imc.py
 # 1. Captura de datos desde el teclado (se esperan strings inicialmente)
 nombre = input("Ingresa tu nombre: ")
 apellido_paterno = input("Ingresa tu apellido paterno: ")
