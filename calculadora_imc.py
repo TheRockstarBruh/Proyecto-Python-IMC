@@ -1,22 +1,54 @@
-# 1. Captura de datos desde el teclado
-nombre = input("Ingresa tu nombre: ")
-apellido_paterno = input("Ingresa tu apellido paterno: ")
-apellido_materno = input("Ingresa tu apellido materno: ")
 
-# Captura de datos numéricos y realización del casting
-edad = int(input("Ingresa tu edad: "))
-peso = float(input("Ingresa tu peso en kg: "))
-estatura = float(input("Ingresa tu estatura en metros (ej. 1.91): "))
+def pedir_cadena(mensaje):
+    """Solicita un texto y valida que no esté vacío."""
+    while True:
+        valor = input(mensaje).strip()
+        if valor:
+            return valor
+        print("Error: Este campo no puede estar vacío. Inténtalo de nuevo.")
 
-# 3. Aplicación de la fórmula del IMC y redondeo a dos decimales
+def pedir_entero(mensaje):
+    """Solicita un número entero y evita que el programa colapse si se ingresan letras."""
+    while True:
+        valor = input(mensaje).strip()
+        if not valor:
+            print("Error: Este campo no puede estar vacío.")
+            continue
+        try:
+            return int(valor)
+        except ValueError:
+            print("Error: Debes ingresar un número entero válido (ej. 28).")
+
+def pedir_flotante(mensaje):
+    """Solicita un número decimal y evita que el programa colapse si se ingresan letras."""
+    while True:
+        valor = input(mensaje).strip()
+        if not valor:
+            print("Error: Este campo no puede estar vacío.")
+            continue
+        try:
+            return float(valor)
+        except ValueError:
+            print("Error: Debes ingresar un número válido (ej. 1.91 o 112.5).")
+
+# Captura de datos con validaciones integradas
+nombre = pedir_cadena("Ingresa tu nombre: ")
+apellido_paterno = pedir_cadena("Ingresa tu apellido paterno: ")
+apellido_materno = pedir_cadena("Ingresa tu apellido materno: ")
+
+edad = pedir_entero("Ingresa tu edad: ")
+peso = pedir_flotante("Ingresa tu peso en kg: ")
+estatura = pedir_flotante("Ingresa tu estatura en metros (ej. 1.91): ")
+
+# Aplicación de la fórmula del IMC y redondeo a dos decimales
 imc = round(peso / (estatura ** 2), 2)
 
-# Formateo de cadenas: asegurando la primera letra en mayúscula con .title()
-nombre_fmt = nombre.strip().title()
-apellido_paterno_fmt = apellido_paterno.strip().title()
-apellido_materno_fmt = apellido_materno.strip().title()
+# Formateo de cadenas: iniciales en mayúscula
+nombre_fmt = nombre.title()
+apellido_paterno_fmt = apellido_paterno.title()
+apellido_materno_fmt = apellido_materno.title()
 
-# 2 y 4. Uso de f-strings para desplegar el resumen de datos limpio y legible
+# Despliegue de datos usando f-strings
 print("\n" + "="*30)
 print(f"{'RESUMEN DE DATOS - IMC':^30}")
 print("="*30)
